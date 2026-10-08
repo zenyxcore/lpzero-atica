@@ -18,7 +18,7 @@
     :root { --graphite: #202321; --ivory: #faf9f5; --ivory-deep: #f3f0e8; --olive: #a9b84a; --muted: #6f716a; --serif: 'Playfair Display', Georgia, serif; --sans: 'DM Sans', sans-serif; }
 
     /* Navegação */
-    .site-nav { position: absolute; z-index: 20; top: 0; left: 50%; width: min(1240px, 85%); min-height: 88px; padding: 18px 0; display: flex; align-items: center; justify-content: space-between; transform: translateX(-50%); border-bottom: 1px solid rgba(250,249,245,.16); }
+    .site-nav { position: absolute; z-index: 20; top: 20px; left: 50%; width: min(1240px, 88%); min-height: 72px; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; transform: translateX(-50%); border: 1px solid rgba(250,249,245,.17); border-radius: 999px; background: linear-gradient(112deg, rgba(169,184,74,.13), rgba(32,35,33,.70) 34%, rgba(23,26,24,.78)); box-shadow: 0 12px 38px rgba(0,0,0,.18), inset 0 1px 0 rgba(250,249,245,.10); -webkit-backdrop-filter: blur(18px) saturate(145%); backdrop-filter: blur(18px) saturate(145%); }
     .nav-logo { width: 142px; height: 42px; object-fit: contain; object-position: left center; }
     .nav-links { display: flex; align-items: center; gap: clamp(28px, 4vw, 62px); }
     .nav-links a, .mobile-menu a { color: rgba(250,249,245,.88); text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; transition: color .2s ease; }
@@ -36,7 +36,7 @@
     .hero-inner { width: min(1240px, 85%); margin: 50px auto 0; text-align: center; }
     .eyebrow { display: flex; justify-content: center; align-items: center; gap: 13px; color: var(--olive); font-size: 10px; line-height: 1.4; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; }
     .eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: currentColor; }
-    .hero-title { max-width: 920px; margin: 24px auto 21px; font-family: var(--serif); font-size: clamp(56px, 7.1vw, 100px); font-weight: 400; line-height: .99; letter-spacing: -.045em; text-wrap: balance; }
+    .hero-title { max-width: 1100px; margin: 24px auto 21px; font-family: var(--serif); font-size: clamp(56px, 7.1vw, 100px); font-weight: 400; line-height: .99; letter-spacing: -.045em; text-wrap: balance; }
     .hero-title em { color: #f0eee5; font-weight: 400; }
     .hero-copy { max-width: 590px; margin: 0 auto; color: rgba(250,249,245,.80); font-size: clamp(15px, 1.25vw, 17px); font-weight: 300; line-height: 1.75; }
     .hero-actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
@@ -150,7 +150,7 @@
     }
     @media (max-width: 680px) {
       html { scroll-padding-top: 70px; }
-      .site-nav { left: 0; right: 0; width: auto; min-height: 70px; padding: 12px 22px; transform: none; }
+      .site-nav { top: 12px; left: 14px; right: 14px; width: auto; min-height: 58px; padding: 9px 16px; transform: none; border-radius: 999px; }
       .nav-logo { width: 116px; height: 34px; }
       .nav-links { display: none; }
       .mobile-menu { display: block; position: relative; color: var(--ivory); }
@@ -161,7 +161,7 @@
       .hero-video { object-position: 58% center; }
       #hero::before { background: radial-gradient(ellipse at 50% 68%, rgba(11,13,12,.76) 0%, rgba(11,13,12,.42) 48%, rgba(11,13,12,.12) 100%), linear-gradient(180deg, rgba(11,13,12,.12), rgba(11,13,12,.30)); }
       .hero-inner { width: auto; margin: 0; padding: 0 24px 96px; text-align: center; }
-      .hero-title { max-width: 560px; margin: 19px auto 17px; font-size: clamp(49px, 13vw, 68px); line-height: 1.01; }
+      .hero-title { max-width: 100%; margin: 19px auto 17px; font-size: clamp(30px, 10vw, 68px); line-height: 1.04; letter-spacing: -.05em; }
       .hero-copy { max-width: 42ch; margin-inline: auto; font-size: 14px; line-height: 1.65; }
       .hero-actions { justify-content: center; gap: 10px; margin-top: 23px; }
       .button { min-height: 49px; padding-inline: 17px; font-size: 9px; letter-spacing: .12em; }
@@ -235,7 +235,7 @@
       </div>
       <div class="hero-inner">
         <span class="eyebrow">Imóveis com identidade</span>
-        <h1 class="hero-title" id="hero-title">Espaços que<br /><em>traduzem o seu</em><br />jeito de viver.</h1>
+        <h1 class="hero-title" id="hero-title"><span class="hero-title-line">Espaços que traduzem</span><br /><em>o seu jeito de viver.</em></h1>
         <p class="hero-copy">Casas e apartamentos selecionados para quem valoriza arquitetura, bem-estar e um modo de vida mais significativo.</p>
         <div class="hero-actions">
           <a href="#visual" class="button button-primary">Explorar imóveis</a>

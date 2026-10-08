@@ -12,12 +12,14 @@ atica-lp-demo/
 ├── index.html       # Página única
 ├── public/
 │   ├── logo.png     # Logotipo Áticas (PNG transparente)
-│   └── hero.jpg     # Imagem principal do hero
+│   ├── hero.jpg     # Pôster de fallback do hero
+│   ├── hero-video.mp4 # Vídeo de fundo do hero
+│   └── port*.jpg/png # Imagens da curadoria
 └── vercel.json      # Configuração de deploy
 ```
 
 ## Identidade Visual
 
-- **Tipografia:** Cormorant Garamond (títulos) + Manrope (corpo)
+- **Tipografia:** Playfair Display (títulos) + DM Sans (corpo)
 - **Cores:** Grafite `#202321` · Marfim `#FAF9F5` · Verde Lima `#A9B84A` · Cinza `#6F716A`
 - **Estilo:** Editorial, minimalista, alto padrão

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#202321" />
+  <title>Áticas — Espaços com identidade</title>
+  <meta name="description" content="Uma curadoria de residências singulares, onde arquitetura, natureza e forma de viver se encontram. Demonstração de marca fictícia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; background: #faf9f5; color: #202321; font-family: 'DM Sans', sans-serif; font-weight: 400; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :root { --graphite: #202321; --ivory: #faf9f5; --ivory-deep: #f3f0e8; --olive: #a9b84a; --muted: #6f716a; --serif: 'Playfair Display', Georgia, serif; --sans: 'DM Sans', sans-serif; }
+
+    /* Navegação */
+    .site-nav { position: absolute; z-index: 20; inset: 0 0 auto; min-height: 88px; padding: 18px 7.5vw; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(250,249,245,.16); }
+    .nav-logo { width: 142px; height: 42px; object-fit: contain; object-position: left center; }
+    .nav-links { display: flex; align-items: center; gap: clamp(28px, 4vw, 62px); }
+    .nav-links a, .mobile-menu a { color: rgba(250,249,245,.88); text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; transition: color .2s ease; }
+    .nav-links a:hover, .mobile-menu a:hover { color: var(--olive); }
+    .nav-side { display: flex; align-items: center; gap: 18px; color: rgba(250,249,245,.72); font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
+    .nav-language { padding-left: 18px; border-left: 1px solid rgba(250,249,245,.35); }
+    .mobile-menu { display: none; }
+
+    /* Hero */
+    #hero { min-height: min(900px, 100svh); height: max(720px, 92svh); position: relative; isolation: isolate; display: flex; align-items: center; overflow: hidden; color: var(--ivory); background: var(--graphite); }
+    .hero-bg { position: absolute; z-index: -2; inset: 0; background: url('public/hero.jpg') center 52% / cover no-repeat; transform: scale(1.015); transition: transform 1.4s cubic-bezier(.2,.65,.3,1); }
+    #hero.loaded .hero-bg { transform: scale(1); }
+    #hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(17,20,18,.88) 0%, rgba(17,20,18,.70) 30%, rgba(17,20,18,.26) 68%, rgba(17,20,18,.10) 100%); }
+    .hero-inner { width: min(1240px, 85%); margin: 50px auto 0; }
+    .eyebrow { display: flex; align-items: center; gap: 13px; color: var(--olive); font-size: 10px; line-height: 1.4; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; }
+    .eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: currentColor; }
+    .hero-title { max-width: 790px; margin: 24px 0 21px; font-family: var(--serif); font-size: clamp(56px, 7.1vw, 100px); font-weight: 400; line-height: .99; letter-spacing: -.045em; text-wrap: balance; }
+    .hero-title em { color: #f0eee5; font-weight: 400; }
+    .hero-copy { max-width: 510px; margin: 0; color: rgba(250,249,245,.80); font-size: clamp(15px, 1.25vw, 17px); font-weight: 300; line-height: 1.75; }
+    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+    .button { min-height: 54px; padding: 0 24px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--olive); border: 1px solid var(--olive); color: var(--graphite); }
+    .button-primary:hover { background: #bac76a; border-color: #bac76a; }
+    .button-outline { border: 1px solid rgba(250,249,245,.45); color: var(--ivory); background: rgba(32,35,33,.16); }
+    .button-outline:hover { border-color: var(--ivory); background: rgba(250,249,245,.10); }
+    .hero-discover { position: absolute; left: 7.5vw; bottom: 34px; display: flex; align-items: center; gap: 13px; color: rgba(250,249,245,.75); text-decoration: none; font-size: 9px; font-weight: 500; letter-spacing: .19em; line-height: 1.55; text-transform: uppercase; }
+    .hero-discover::before { content: ''; width: 1px; height: 42px; background: var(--olive); }
+
+    /* História da marca */
+    #sobre { padding: 92px 7.5vw; background: var(--ivory); }
+    .about-grid { width: min(1240px, 100%); margin: 0 auto; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(54px, 8vw, 112px); align-items: center; }
+    .about-copy { max-width: 490px; }
+    .section-label { margin: 0 0 19px; color: #89963a; font-size: 10px; font-weight: 600; letter-spacing: .22em; line-height: 1.4; text-transform: uppercase; }
+    .section-title { margin: 0; font-family: var(--serif); font-size: clamp(40px, 4.6vw, 64px); font-weight: 400; line-height: 1.06; letter-spacing: -.035em; text-wrap: balance; }
+    .section-title em { color: var(--muted); font-weight: 400; }
+    .about-rule { width: 42px; height: 1px; margin: 26px 0 21px; background: var(--olive); }
+    .about-copy p:not(.section-label) { max-width: 48ch; margin: 0 0 14px; color: var(--muted); font-size: 15px; line-height: 1.75; }
+    .about-copy strong { color: var(--graphite); font-weight: 600; }
+    .text-link { display: inline-flex; align-items: center; gap: 14px; margin-top: 13px; padding: 0 0 8px; border-bottom: 1px solid rgba(32,35,33,.35); color: var(--graphite); text-decoration: none; font-size: 10px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; transition: border-color .2s ease, color .2s ease; }
+    .text-link:hover { color: #89963a; border-color: var(--olive); }
+    .about-image { min-height: 420px; height: min(39vw, 500px); overflow: hidden; background: #e4e0d6; }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+    /* Imóveis */
+    #visual { padding: 91px 0 96px; overflow: hidden; background: var(--graphite); color: var(--ivory); }
+    .portfolio-inner { width: min(1240px, 85%); margin: 0 auto; }
+    .portfolio-header { display: grid; grid-template-columns: minmax(0,1fr) minmax(190px, .48fr) auto; gap: 42px; align-items: end; margin-bottom: 39px; }
+    .portfolio-title { max-width: 650px; margin: 0; font-family: var(--serif); font-size: clamp(38px, 4.3vw, 60px); font-weight: 400; line-height: 1.06; letter-spacing: -.035em; text-wrap: balance; }
+    .portfolio-title em { color: rgba(250,249,245,.65); }
+    .portfolio-intro { max-width: 260px; margin: 0; color: rgba(250,249,245,.58); font-size: 13px; line-height: 1.7; }
+    .portfolio-tools { display: flex; align-items: center; gap: 14px; }
+    .carousel-count { min-width: 48px; color: rgba(250,249,245,.62); font-family: var(--serif); font-size: 14px; font-variant-numeric: tabular-nums; }
+    .carousel-btn { min-height: 40px; padding: 0 12px; border: 1px solid rgba(250,249,245,.30); border-radius: 0; background: transparent; color: var(--ivory); font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+    .carousel-btn:hover, .carousel-btn:focus-visible { border-color: var(--olive); background: rgba(169,184,74,.12); outline: none; }
+    .carousel-window { overflow: visible; }
+    .visual-carousel { display: flex; gap: 28px; overflow-x: auto; padding: 0 max(7.5vw, calc((100vw - 1240px) / 2)) 10px; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; overscroll-behavior-x: contain; }
+    .visual-carousel::-webkit-scrollbar { display: none; }
+    .property-card { flex: 0 0 min(72vw, 850px); scroll-snap-align: start; }
+    .property-media { height: clamp(300px, 41vw, 510px); overflow: hidden; background: #30342f; }
+    .property-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .85s cubic-bezier(.2,.65,.3,1), filter .85s ease; filter: saturate(.88); }
+    .property-card:hover .property-media img { transform: scale(1.035); filter: saturate(1); }
+    .property-meta { display: grid; grid-template-columns: minmax(150px, .65fr) minmax(200px, 1fr) auto; gap: 24px; align-items: center; padding: 18px 2px 0; border-top: 1px solid rgba(250,249,245,.22); margin-top: 16px; }
+    .property-index { display: block; margin-bottom: 8px; color: var(--olive); font-size: 9px; letter-spacing: .17em; }
+    .property-name { margin: 0; color: var(--ivory); font-family: var(--serif); font-size: clamp(22px, 2vw, 29px); font-weight: 400; line-height: 1.15; }
+    .property-kind { color: rgba(250,249,245,.54); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
+    .property-description { max-width: 34ch; color: rgba(250,249,245,.65); font-size: 12px; line-height: 1.6; }
+    .portfolio-progress { width: min(1240px, 85%); height: 1px; margin: 32px auto 0; background: rgba(250,249,245,.18); }
+    .portfolio-progress span { display: block; width: 25%; height: 1px; background: var(--olive); transition: width .25s ease; }
+
+    /* Chamada final */
+    #contato { position: relative; min-height: 440px; display: flex; align-items: center; overflow: hidden; isolation: isolate; color: var(--ivory); background: var(--graphite); }
+    #contato::before { content: ''; position: absolute; z-index: -2; inset: 0; background: url('public/port4.jpg') center 48% / cover no-repeat; }
+    #contato::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(17,20,18,.86), rgba(17,20,18,.46) 55%, rgba(17,20,18,.10)); }
+    .contact-inner { width: min(1240px, 85%); margin: 0 auto; padding: 82px 0; }
+    .contact-inner .section-label { color: var(--olive); }
+    .contact-title { max-width: 730px; margin: 0; font-family: var(--serif); font-size: clamp(42px, 5vw, 68px); font-weight: 400; line-height: 1.04; letter-spacing: -.035em; text-wrap: balance; }
+    .contact-title em { color: rgba(250,249,245,.76); }
+    .contact-copy { max-width: 490px; margin: 17px 0 23px; color: rgba(250,249,245,.78); font-size: 14px; line-height: 1.7; }
+    .contact-note { margin: 15px 0 0; color: rgba(250,249,245,.58); font-size: 11px; }
+    .contact-link { color: var(--ivory); border-color: rgba(250,249,245,.55); }
+    footer { min-height: 96px; padding: 24px 7.5vw; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; background: #191c1a; color: rgba(250,249,245,.5); }
+    .footer-logo { width: 110px; height: 34px; object-fit: contain; object-position: left center; opacity: .78; }
+    .footer-copy { margin: 0; font-size: 10px; line-height: 1.7; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(250,249,245,.62); text-decoration: none; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    .footer-links a:hover { color: var(--olive); }
+
+    @media (max-width: 980px) {
+      .site-nav { padding-inline: 6vw; }
+      .nav-links { gap: 24px; }
+      .nav-links a { font-size: 9px; }
+      .nav-side { display: none; }
+      .about-grid { gap: 48px; }
+      .portfolio-inner, .contact-inner { width: 88%; }
+      .portfolio-header { grid-template-columns: minmax(0,1fr) auto; gap: 22px; }
+      .portfolio-intro { grid-column: 1; grid-row: 2; }
+      .portfolio-tools { grid-column: 2; grid-row: 1 / span 2; align-self: end; }
+      .visual-carousel { padding-inline: 6vw; }
+      .portfolio-progress { width: 88%; }
+    }
+    @media (max-width: 680px) {
+      html { scroll-padding-top: 70px; }
+      .site-nav { min-height: 70px; padding: 12px 22px; }
+      .nav-logo { width: 116px; height: 34px; }
+      .nav-links { display: none; }
+      .mobile-menu { display: block; position: relative; color: var(--ivory); }
+      .mobile-menu summary { list-style: none; cursor: pointer; padding: 10px 0 10px 14px; color: var(--ivory); font-size: 9px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+      .mobile-menu summary::-webkit-details-marker { display: none; }
+      .mobile-menu[open] > div { position: absolute; top: calc(100% + 12px); right: -6px; min-width: 190px; display: grid; gap: 20px; padding: 22px; background: rgba(32,35,33,.97); border: 1px solid rgba(250,249,245,.15); }
+      #hero { height: 100svh; min-height: 690px; max-height: 860px; align-items: flex-end; }
+      .hero-bg { background-position: 58% center; }
+      #hero::before { background: linear-gradient(0deg, rgba(17,20,18,.93) 0%, rgba(17,20,18,.75) 38%, rgba(17,20,18,.14) 100%); }
+      .hero-inner { width: auto; margin: 0; padding: 0 24px 96px; }
+      .hero-title { max-width: 560px; margin: 19px 0 17px; font-size: clamp(49px, 13vw, 68px); line-height: 1.01; }
+      .hero-copy { max-width: 42ch; font-size: 14px; line-height: 1.65; }
+      .hero-actions { gap: 10px; margin-top: 23px; }
+      .button { min-height: 49px; padding-inline: 17px; font-size: 9px; letter-spacing: .12em; }
+      .hero-discover { left: 24px; bottom: 22px; font-size: 8px; }
+      #sobre { padding: 65px 24px; }
+      .about-grid { display: flex; flex-direction: column; align-items: stretch; gap: 28px; }
+      .about-copy { max-width: none; }
+      .section-title { font-size: clamp(39px, 10vw, 52px); }
+      .about-rule { margin: 19px 0 16px; }
+      .about-copy p:not(.section-label) { font-size: 14px; line-height: 1.7; }
+      .about-image { height: auto; min-height: 0; aspect-ratio: 1.16 / 1; }
+      #visual { padding: 66px 0 70px; }
+      .portfolio-inner { width: auto; margin-inline: 24px; }
+      .portfolio-header { display: flex; flex-wrap: wrap; align-items: end; gap: 17px; margin-bottom: 26px; }
+      .portfolio-title { max-width: 560px; font-size: clamp(38px, 10vw, 52px); }
+      .portfolio-intro { max-width: 34ch; font-size: 12px; }
+      .portfolio-tools { margin-left: auto; }
+      .carousel-btn { min-height: 36px; padding-inline: 9px; font-size: 8px; }
+      .carousel-count { min-width: 43px; font-size: 12px; }
+      .visual-carousel { gap: 16px; padding: 0 24px 8px; }
+      .property-card { flex-basis: 86vw; }
+      .property-media { height: auto; aspect-ratio: 1.22 / 1; }
+      .property-meta { grid-template-columns: 1fr auto; gap: 10px 16px; padding-top: 13px; margin-top: 12px; }
+      .property-title-wrap { grid-column: 1; }
+      .property-kind { grid-column: 1; grid-row: 2; }
+      .property-description { grid-column: 2; grid-row: 1 / span 2; max-width: 20ch; font-size: 10px; }
+      .property-index { margin-bottom: 5px; font-size: 8px; }
+      .property-name { font-size: 23px; }
+      .portfolio-progress { width: auto; margin: 26px 24px 0; }
+      #contato { min-height: 450px; }
+      #contato::before { background-position: 62% center; }
+      #contato::after { background: linear-gradient(0deg, rgba(17,20,18,.86), rgba(17,20,18,.48) 75%, rgba(17,20,18,.16)); }
+      .contact-inner { width: auto; margin: 0; padding: 70px 24px; align-self: flex-end; }
+      .contact-title { font-size: clamp(42px, 11vw, 56px); }
+      .contact-copy { max-width: 39ch; font-size: 13px; }
+      footer { padding: 24px; align-items: flex-start; }
+      .footer-copy { order: 3; width: 100%; }
+      .footer-links { margin-left: auto; align-items: center; gap: 14px; }
+      .footer-links a { font-size: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Navegação principal">
+    <a href="#hero" aria-label="Áticas — início"><img src="public/logo.png" alt="Áticas" class="nav-logo" /></a>
+    <div class="nav-links">
+      <a href="#sobre">A marca</a>
+      <a href="#visual">Imóveis</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <details class="mobile-menu">
+      <summary>Menu</summary>
+      <div>
+        <a href="#sobre">A marca</a>
+        <a href="#visual">Imóveis</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </details>
+  </nav>
+
+  <main>
+    <section id="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <span class="eyebrow">Imóveis com identidade</span>
+        <h1 class="hero-title" id="hero-title">Espaços que<br /><em>traduzem o seu</em><br />jeito de viver.</h1>
+        <p class="hero-copy">Casas e apartamentos selecionados para quem valoriza arquitetura, bem-estar e um modo de vida mais significativo.</p>
+        <div class="hero-actions">
+          <a href="#visual" class="button button-primary">Explorar imóveis</a>
+          <a href="#sobre" class="button button-outline">Conhecer a Áticas</a>
+        </div>
+      </div>
+      <a href="#sobre" class="hero-discover">Descubra<br />mais</a>
+    </section>
+
+    <section id="sobre" aria-labelledby="about-title">
+      <div class="about-grid">
+        <div class="about-copy">
+          <p class="section-label">Sobre a Áticas</p>
+          <h2 class="section-title" id="about-title">A escolha de um endereço <em>muda a forma de viver.</em></h2>
+          <div class="about-rule" aria-hidden="true"></div>
+          <p>Na Áticas, acreditamos que um imóvel é mais do que um endereço: é o cenário dos dias que importam. Por isso, cada espaço é escolhido com atenção à <strong>arquitetura, à luz e à relação com o entorno.</strong></p>
+          <p>Uma curadoria de casas e apartamentos singulares, para quem reconhece que os detalhes também fazem parte de se sentir em casa.</p>
+          <a class="text-link" href="#contato">Nossa essência</a>
+        </div>
+        <div class="about-image">
+          <img src="public/port2.jpg" alt="Residência contemporânea integrada ao jardim" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section id="visual" aria-labelledby="portfolio-title">
+      <div class="portfolio-inner">
+        <div class="portfolio-header">
+          <div>
+            <p class="section-label">Portfólio em destaque</p>
+            <h2 class="portfolio-title" id="portfolio-title">Residências que inspiram <em>novos capítulos.</em></h2>
+          </div>
+          <p class="portfolio-intro">Uma seleção de espaços que revela o melhor da arquitetura contemporânea em sintonia com o entorno.</p>
+          <div class="portfolio-tools">
+            <span class="carousel-count" aria-live="polite">01 / 04</span>
+            <button class="carousel-btn prev-btn" type="button" aria-label="Ver imóvel anterior">Anterior</button>
+            <button class="carousel-btn next-btn" type="button" aria-label="Ver próximo imóvel">Próximo</button>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-window">
+        <div class="visual-carousel" aria-label="Imóveis selecionados" tabindex="0">
+          <article class="property-card">
+            <div class="property-media"><img src="public/port1.png" alt="Residência contemporânea com jardim tropical" loading="lazy" /></div>
+            <div class="property-meta">
+              <div class="property-title-wrap"><span class="property-index">01 — 04</span><h3 class="property-name">Residência Brisa</h3></div>
+              <span class="property-kind">Modernidade tropical</span>
+              <span class="property-description">Linhas contemporâneas em diálogo com a paisagem.</span>
+            </div>
+          </article>
+          <article class="property-card">
+            <div class="property-media"><img src="public/port2.jpg" alt="Casa de pedra cercada por vegetação" loading="lazy" /></div>
+            <div class="property-meta">
+              <div class="property-title-wrap"><span class="property-index">02 — 04</span><h3 class="property-name">Casa de Pedra</h3></div>
+              <span class="property-kind">Refúgio natural</span>
+              <span class="property-description">Materiais naturais e arquitetura acolhedora.</span>
+            </div>
+          </article>
+          <article class="property-card">
+            <div class="property-media"><img src="public/port3.png" alt="Casa minimalista de arquitetura contemporânea" loading="lazy" /></div>
+            <div class="property-meta">
+              <div class="property-title-wrap"><span class="property-index">03 — 04</span><h3 class="property-name">Villa Minimal</h3></div>
+              <span class="property-kind">Design contemporâneo</span>
+              <span class="property-description">Proporções precisas e espaços pensados para o cotidiano.</span>
+            </div>
+          </article>
+          <article class="property-card">
+            <div class="property-media"><img src="public/port4.jpg" alt="Casa linear com iluminação acolhedora ao entardecer" loading="lazy" /></div>
+            <div class="property-meta">
+              <div class="property-title-wrap"><span class="property-index">04 — 04</span><h3 class="property-name">Morada Linear</h3></div>
+              <span class="property-kind">Conforto elegante</span>
+              <span class="property-description">Um projeto de presença discreta e ambientes generosos.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="portfolio-progress" aria-hidden="true"><span></span></div>
+    </section>
+
+    <section id="contato" aria-labelledby="contact-title">
+      <div class="contact-inner">
+        <p class="section-label">Viva a diferença</p>
+        <h2 class="contact-title" id="contact-title">Mais do que um imóvel,<br /><em>um novo ritmo de vida.</em></h2>
+        <p class="contact-copy">Cada endereço guarda uma possibilidade. Descubra espaços que valorizam o seu tempo e a sua forma de viver.</p>
+        <a class="text-link contact-link" href="#sobre">Conheça nossa curadoria</a>
+        <p class="contact-note">Contato disponível em breve.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#hero" aria-label="Voltar ao início"><img src="public/logo.png" alt="Áticas" class="footer-logo" /></a>
+    <p class="footer-copy">© 2025 Áticas. Marca fictícia — demonstração de identidade visual.<br />Projeto criado para fins educacionais. Nenhum imóvel está à venda.</p>
+    <div class="footer-links"><a href="#sobre">A marca</a><a href="#visual">Imóveis</a><a href="#contato">Contato</a></div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hero = document.querySelector('#hero');
+      const carousel = document.querySelector('.visual-carousel');
+      const cards = [...document.querySelectorAll('.property-card')];
+      const count = document.querySelector('.carousel-count');
+      const progress = document.querySelector('.portfolio-progress span');
+      const menu = document.querySelector('.mobile-menu');
+
+      requestAnimationFrame(() => hero.classList.add('loaded'));
+
+      const scrollCarousel = (direction) => {
+        const card = cards[0];
+        if (!card) return;
+        carousel.scrollBy({ left: direction * (card.getBoundingClientRect().width + 28), behavior: 'smooth' });
+      };
+      document.querySelector('.prev-btn').addEventListener('click', () => scrollCarousel(-1));
+      document.querySelector('.next-btn').addEventListener('click', () => scrollCarousel(1));
+
+      const updateCarousel = () => {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        const progressValue = maxScroll > 0 ? carousel.scrollLeft / maxScroll : 0;
+        progress.style.width = `${Math.max(25, Math.min(100, 25 + progressValue * 75))}%`;
+        const carouselLeft = carousel.getBoundingClientRect().left;
+        const nearest = cards.reduce((best, card, index) => {
+          const distance = Math.abs(card.getBoundingClientRect().left - carouselLeft);
+          return distance < best.distance ? { index, distance } : best;
+        }, { index: 0, distance: Infinity });
+        count.textContent = `${String(nearest.index + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+      };
+      carousel.addEventListener('scroll', updateCarousel, { passive: true });
+      window.addEventListener('resize', updateCarousel);
+      updateCarousel();
+
+      menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+    });
+  </script>
+</body>
+</html>

@@ -29,9 +29,10 @@
 
     /* Hero */
     #hero { min-height: min(900px, 100svh); height: max(720px, 92svh); position: relative; isolation: isolate; display: flex; align-items: center; overflow: hidden; color: var(--ivory); background: var(--graphite); }
-    .hero-bg { position: absolute; z-index: -2; inset: 0; background: url('public/hero.jpg') center 52% / cover no-repeat; transform: scale(1.015); transition: transform 1.4s cubic-bezier(.2,.65,.3,1); }
+    .hero-bg { position: absolute; z-index: -2; inset: 0; overflow: hidden; background: #101210; transform: scale(1.015); transition: transform 1.4s cubic-bezier(.2,.65,.3,1); }
+    .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 54%; }
     #hero.loaded .hero-bg { transform: scale(1); }
-    #hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(17,20,18,.88) 0%, rgba(17,20,18,.70) 30%, rgba(17,20,18,.26) 68%, rgba(17,20,18,.10) 100%); }
+    #hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(11,13,12,.88) 0%, rgba(11,13,12,.72) 30%, rgba(11,13,12,.30) 68%, rgba(11,13,12,.18) 100%), rgba(0,0,0,.24); }
     .hero-inner { width: min(1240px, 85%); margin: 50px auto 0; }
     .eyebrow { display: flex; align-items: center; gap: 13px; color: var(--olive); font-size: 10px; line-height: 1.4; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; }
     .eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: currentColor; }
@@ -130,8 +131,8 @@
       .mobile-menu summary::-webkit-details-marker { display: none; }
       .mobile-menu[open] > div { position: absolute; top: calc(100% + 12px); right: -6px; min-width: 190px; display: grid; gap: 20px; padding: 22px; background: rgba(32,35,33,.97); border: 1px solid rgba(250,249,245,.15); }
       #hero { height: 100svh; min-height: 690px; max-height: 860px; align-items: flex-end; }
-      .hero-bg { background-position: 58% center; }
-      #hero::before { background: linear-gradient(0deg, rgba(17,20,18,.93) 0%, rgba(17,20,18,.75) 38%, rgba(17,20,18,.14) 100%); }
+      .hero-video { object-position: 58% center; }
+      #hero::before { background: linear-gradient(0deg, rgba(11,13,12,.93) 0%, rgba(11,13,12,.75) 38%, rgba(11,13,12,.22) 100%), rgba(0,0,0,.24); }
       .hero-inner { width: auto; margin: 0; padding: 0 24px 96px; }
       .hero-title { max-width: 560px; margin: 19px 0 17px; font-size: clamp(49px, 13vw, 68px); line-height: 1.01; }
       .hero-copy { max-width: 42ch; font-size: 14px; line-height: 1.65; }
@@ -200,7 +201,11 @@
 
   <main>
     <section id="hero" aria-labelledby="hero-title">
-      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-bg" aria-hidden="true">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="public/hero.jpg" tabindex="-1" aria-hidden="true">
+          <source src="public/hero-video.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div class="hero-inner">
         <span class="eyebrow">Imóveis com identidade</span>
         <h1 class="hero-title" id="hero-title">Espaços que<br /><em>traduzem o seu</em><br />jeito de viver.</h1>
@@ -302,6 +307,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const hero = document.querySelector('#hero');
+      const heroVideo = hero.querySelector('.hero-video');
       const carousel = document.querySelector('.visual-carousel');
       const cards = [...document.querySelectorAll('.property-card')];
       const count = document.querySelector('.carousel-count');
@@ -309,6 +315,7 @@
       const menu = document.querySelector('.mobile-menu');
 
       requestAnimationFrame(() => hero.classList.add('loaded'));
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) heroVideo.pause();
 
       const scrollCarousel = (direction) => {
         const card = cards[0];

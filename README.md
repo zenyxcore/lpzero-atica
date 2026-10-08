@@ -14,6 +14,7 @@ atica-lp-demo/
 │   ├── logo.png     # Logotipo Áticas (PNG transparente)
 │   ├── hero.jpg     # Pôster de fallback do hero
 │   ├── hero-video.mp4 # Vídeo de fundo do hero
+│   ├── brand-story-aticas.webp # Visual editorial da seção sobre
 │   └── port*.jpg/png # Imagens da curadoria
 └── vercel.json      # Configuração de deploy
 ```

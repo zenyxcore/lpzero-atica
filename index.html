@@ -61,8 +61,10 @@
     .about-copy strong { color: var(--graphite); font-weight: 600; }
     .text-link { display: inline-flex; align-items: center; gap: 14px; margin-top: 13px; padding: 0 0 8px; border-bottom: 1px solid rgba(32,35,33,.35); color: var(--graphite); text-decoration: none; font-size: 10px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; transition: border-color .2s ease, color .2s ease; }
     .text-link:hover { color: #89963a; border-color: var(--olive); }
-    .about-image { min-height: 420px; height: min(39vw, 500px); overflow: hidden; background: #e4e0d6; }
-    .about-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .about-image { position: relative; min-height: 420px; height: min(39vw, 500px); overflow: hidden; background: #292b25; }
+    .about-image-brand::after { content: ''; position: absolute; z-index: 2; inset: 16px; border: 1px solid rgba(250,249,245,.14); pointer-events: none; }
+    .about-image .about-backdrop { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .about-image .about-mark { position: absolute; z-index: 1; top: 50%; left: 50%; width: min(56%, 390px); height: auto; object-fit: contain; object-position: center; opacity: .96; transform: translate(-50%,-50%); filter: drop-shadow(0 8px 26px rgba(0,0,0,.28)); }
 
     /* Imóveis */
     #visual { position: relative; isolation: isolate; padding: 96px 0 88px; overflow: hidden; background: radial-gradient(ellipse at 14% 8%, rgba(169,184,74,.10), transparent 34%), radial-gradient(ellipse at 88% 92%, rgba(250,249,245,.035), transparent 32%), var(--graphite); color: var(--ivory); }
@@ -253,8 +255,9 @@
           <p>Uma curadoria de casas e apartamentos singulares, para quem reconhece que os detalhes também fazem parte de se sentir em casa.</p>
           <a class="text-link" href="#contato">Nossa essência</a>
         </div>
-        <div class="about-image">
-          <img src="public/port2.jpg" alt="Residência contemporânea integrada ao jardim" loading="lazy" />
+        <div class="about-image about-image-brand">
+          <img class="about-backdrop" src="public/brand-story-aticas.webp" alt="" loading="lazy" />
+          <img class="about-mark" src="public/logo.png" alt="Áticas" loading="lazy" />
         </div>
       </div>
     </section>
